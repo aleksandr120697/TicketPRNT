@@ -1,0 +1,80 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TicketPrint"
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors" 
+        x:Class="TicketPrint.MainWindow"
+        Height="1024" 
+        Width="1280"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized"
+        Background="White"
+        Loaded="Window_Loaded">
+    <Window.Triggers>
+        <EventTrigger x:Name="anim" RoutedEvent="Button.Click">
+            <EventTrigger.Actions>
+                <BeginStoryboard>
+                    <Storyboard x:Name="Animations" AutoReverse="True">
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="btn_print" Storyboard.TargetProperty="(UIElement.Opacity)">
+                            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1">
+                                <EasingDoubleKeyFrame.EasingFunction>
+                                    <BackEase EasingMode="EaseOut"/>
+                                </EasingDoubleKeyFrame.EasingFunction>
+                            </EasingDoubleKeyFrame>
+                            <EasingDoubleKeyFrame KeyTime="00:00:01" Value="0">
+                                <EasingDoubleKeyFrame.EasingFunction>
+                                    <BackEase EasingMode="EaseOut"/>
+                                </EasingDoubleKeyFrame.EasingFunction>
+                            </EasingDoubleKeyFrame>
+                        </DoubleAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="border" Storyboard.TargetProperty="(UIElement.Opacity)">
+                            <EasingDoubleKeyFrame KeyTime="00:00:01" Value="0">
+                                <EasingDoubleKeyFrame.EasingFunction>
+                                    <BackEase EasingMode="EaseOut"/>
+                                </EasingDoubleKeyFrame.EasingFunction>
+                            </EasingDoubleKeyFrame>
+                            <EasingDoubleKeyFrame KeyTime="00:00:02" Value="1">
+                                <EasingDoubleKeyFrame.EasingFunction>
+                                    <BackEase EasingMode="EaseOut"/>
+                                </EasingDoubleKeyFrame.EasingFunction>
+                            </EasingDoubleKeyFrame>
+                            <EasingDoubleKeyFrame KeyTime="00:00:03" Value="1">
+                                <EasingDoubleKeyFrame.EasingFunction>
+                                    <BackEase EasingMode="EaseOut"/>
+                                </EasingDoubleKeyFrame.EasingFunction>
+                            </EasingDoubleKeyFrame>
+                        </DoubleAnimationUsingKeyFrames>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger.Actions>
+        </EventTrigger>
+    </Window.Triggers>
+    <Grid>
+        <Button x:Name="btn_print" Content="Получить талон" Style="{StaticResource CenterButton}" Click="Button_Click" Margin="240,615,240,110"/>
+
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 0 300">
+            <Image Source="/Image/Logo.png" Width="400" Height="200" Style="{StaticResource Logo}" />
+            <TextBlock Text="ЕДЦУП" Style="{StaticResource CenterText}"/>
+
+        </StackPanel>
+        <Border x:Name="border" BorderBrush="Black" BorderThickness="5" Width="700" Height="900" Padding="0 250 0 0" Opacity="0" >
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="Номер талона:" FontSize="80" Margin="0 "/>
+                <TextBlock x:Name="numberBox" Text="" FontSize="150" FontWeight="Bold" HorizontalAlignment="Center"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Text="Дата: " FontSize="80"/>
+                    <TextBlock x:Name="dataBox" Text="" FontSize="80"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Text="Время: " FontSize="80"/>
+                    <TextBlock x:Name="timeBox" Text="" FontSize="80" />
+                </StackPanel>
+
+            </StackPanel>
+        </Border>
+
+    </Grid>
+</Window>
