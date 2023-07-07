@@ -48,12 +48,14 @@ namespace TicketPrint
         {
             try
             {
+                //первый запуск
                 if(animation == null) 
                 {
                     
                     animation = (Storyboard)FindResource("Animations");
                     animation.Begin();
                 }
+                //последующие
                 else
                 {
                     animation.Remove();
