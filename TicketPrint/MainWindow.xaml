@@ -53,13 +53,6 @@
         </EventTrigger>
     </Window.Triggers>
     <Grid>
-        <Button x:Name="btn_print" Content="Получить талон" Style="{StaticResource CenterButton}" Click="Button_Click" Margin="240,615,240,110"/>
-
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 0 300">
-            <Image Source="/Image/Logo.png" Width="400" Height="200" Style="{StaticResource Logo}" />
-            <TextBlock Text="ЕДЦУП" Style="{StaticResource CenterText}"/>
-
-        </StackPanel>
         <Border x:Name="border" BorderBrush="Black" BorderThickness="5" Width="700" Height="900" Padding="0 250 0 0" Opacity="0" >
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBlock Text="Номер талона:" FontSize="80" Margin="0 "/>
@@ -75,6 +68,13 @@
 
             </StackPanel>
         </Border>
+
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 0 300">
+            <Image Source="/Image/Logo.png" Width="400" Height="200" Style="{StaticResource Logo}" />
+            <TextBlock Text="ЕДЦУП" Style="{StaticResource CenterText}"/>
+
+        </StackPanel>
+        <Button x:Name="btn_print" Content="Получить талон" Style="{StaticResource CenterButton}" Click="Button_Click" Margin="240,615,240,110"/>
 
     </Grid>
 </Window>

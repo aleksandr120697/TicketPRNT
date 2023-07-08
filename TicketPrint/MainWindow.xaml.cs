@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Printing;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Media.Animation;
 using SysTask = System.Threading.Tasks;
@@ -25,6 +27,7 @@ namespace TicketPrint
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            clearBack();
             SaveData = Properties.Settings.Default.data;
             string NewData = DateTime.Now.ToString("dd/MM/yy");
             if(SaveData != NewData)
@@ -36,37 +39,33 @@ namespace TicketPrint
             }
             number = Properties.Settings.Default.num;
         }
+        public void clearBack()
+        {
+            double backupDay = 1;
+            string backupDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory+ "\\Documents");
+            try
+            {
+                string[] direct = Directory.GetDirectories(backupDir);
+                 foreach (string item in direct)
+                {
+                    if (Directory.GetCreationTime(item) < DateTime.Now - TimeSpan.FromDays(backupDay))
+                    {
+                        Directory.Delete(item);
+                    }
+                }
+            }
+            catch
+            {
+                return;
+            }
+        }
 
         private void SaveNumber(int number)
         {
             Properties.Settings.Default.num = number;
             Properties.Settings.Default.Save();
         }
-        //попытка в которой я хотел запускать из кода(работает ещё хужечем всё что есть сейчас.)
-        Storyboard animation;
-        private void StartAnimation()
-        {
-            try
-            {
-                //первый запуск
-                if(animation == null) 
-                {
-                    
-                    animation = (Storyboard)FindResource("Animations");
-                    animation.Begin();
-                }
-                //последующие
-                else
-                {
-                    animation.Remove();
-                    animation.Begin();
-                }
-
-           }
-           catch(Exception ex) { MessageBox.Show(ex.Message); }
-        }
-
-
+        
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             number++;
@@ -86,7 +85,7 @@ namespace TicketPrint
                 {"<TIME>",time },
             };
             string docPath = helper.Process(items);
-            if (docPath == null)
+            if (docPath != null)
             {
                 if (helper.Print(docPath) == false)
                 {
