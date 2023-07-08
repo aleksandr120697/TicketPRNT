@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Printing;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Media.Animation;
 using SysTask = System.Threading.Tasks;
@@ -42,13 +43,14 @@ namespace TicketPrint
         public void clearBack()
         {
             double backupDay = 1;
-            string backupDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory+ "\\Documents");
+            string backupDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory+@"\Documents");
             try
             {
                 string[] direct = Directory.GetDirectories(backupDir);
-                 foreach (string item in direct)
+                 foreach (string item in direct )
                 {
-                    if (Directory.GetCreationTime(item) < DateTime.Now - TimeSpan.FromDays(backupDay))
+                    DateTime dateTime = Directory.GetLastWriteTime(item);
+                    if (dateTime < DateTime.Now - TimeSpan.FromDays(backupDay))
                     {
                         Directory.Delete(item);
                     }
