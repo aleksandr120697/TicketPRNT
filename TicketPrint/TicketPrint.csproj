@@ -86,6 +86,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Core\BaseInpc.cs" />
+    <Compile Include="Core\CommandHelper.cs" />
+    <Compile Include="Core\RelayCommand.cs" />
+    <Compile Include="Core\RelayCommand.Exceptions.cs" />
+    <Compile Include="Core\RelayCommand.Generic.cs" />
+    <Compile Include="Core\RelayCommand.Handlers.cs" />
+    <Compile Include="Core\SelectedItemsBinding.cs" />
+    <Compile Include="Core\ValidationBase.cs" />
+    <Compile Include="Core\ViewModelBase.Command.cs" />
+    <Compile Include="Core\ViewModelBase.cs" />
+    <Compile Include="ViewModel\MainVM.cs" />
     <Compile Include="WordHelper.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

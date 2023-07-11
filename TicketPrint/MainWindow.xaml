@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TicketPrint"
         xmlns:b="http://schemas.microsoft.com/xaml/behaviors" 
+        xmlns:vm="clr-namespace:TicketPrint.ViewModel"
         x:Class="TicketPrint.MainWindow"
         Height="1024" 
         Width="1280"
@@ -13,6 +14,9 @@
         WindowState="Maximized"
         Background="White"
         Loaded="Window_Loaded">
+    <Window.DataContext>
+        <vm:MainVM/>
+    </Window.DataContext>
     <Window.Triggers>
         <EventTrigger x:Name="anim" RoutedEvent="Button.Click">
             <EventTrigger.Actions>
