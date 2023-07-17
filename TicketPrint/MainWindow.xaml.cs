@@ -98,28 +98,22 @@ namespace TicketPrint
                 else
                 {
                     var comp = System.Environment.MachineName;
-                    PrintServer myPrintServer = new PrintServer(@"\\"+comp);
+                    PrintServer myPrintServer = new PrintServer(@"\\" + comp);
                     PrintQueueCollection myPrintQueues = myPrintServer.GetPrintQueues();
-                    try
-                    {
-                        foreach (PrintQueue pq in myPrintQueues)
-                        {
-                            pq.Refresh();
-                            PrintJobInfoCollection pCollection = pq.GetPrintJobInfoCollection();
-                            foreach (PrintSystemJobInfo job in pCollection)
-                            {
-                                SpotTroubleUsingJobAttributes(job);
-                            }
-                            if (printComplite)
-                            {
-                                SysTask.Task.Delay(TimeSpan.FromSeconds(2)).Wait();
-                            }
 
-                        }
-                    }
-                    catch (Exception ex)
+                    foreach (PrintQueue pq in myPrintQueues)
                     {
-                        MessageBox.Show(ex.Message, "Print");
+                        pq.Refresh();
+                        PrintJobInfoCollection pCollection = pq.GetPrintJobInfoCollection();
+                        foreach (PrintSystemJobInfo job in pCollection)
+                        {
+                            SpotTroubleUsingJobAttributes(job);
+                        }
+                        if (printComplite)
+                        {
+                            SysTask.Task.Delay(TimeSpan.FromSeconds(2)).Wait();
+                        }
+
                     }
                 }
             }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.IO;
+using System.Printing;
 using System.Windows;
 using System.Windows.Controls;
 using Word = Microsoft.Office.Interop.Word;
@@ -98,7 +99,7 @@ namespace TicketPrint
             {
                 printingDoc = new Word.Application();
                 printingDoc.Documents.Open(docPath);
-                printingDoc.ActiveDocument.PrintOut(true);
+                printingDoc.ActiveDocument.PrintOut();
                 printingDoc.ActiveDocument.Close(SaveChanges: false);
                 return true;
             }
