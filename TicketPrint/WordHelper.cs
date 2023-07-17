@@ -98,7 +98,7 @@ namespace TicketPrint
             {
                 printingDoc = new Word.Application();
                 printingDoc.Documents.Open(docPath);
-                printingDoc.ActiveDocument.PrintOut();
+                printingDoc.ActiveDocument.PrintOut(true);
                 printingDoc.ActiveDocument.Close(SaveChanges: false);
                 return true;
             }

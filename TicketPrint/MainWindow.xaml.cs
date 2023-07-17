@@ -70,6 +70,7 @@ namespace TicketPrint
         
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+
             number++;
             time = DateTime.Now.ToString("HH/mm/ss");
             data = DateTime.Now.ToString("dd/MM/yy");
@@ -86,6 +87,7 @@ namespace TicketPrint
                 {"<DAT>",data },
                 {"<TIME>",time },
             };
+
             string docPath = helper.Process(items);
             if (docPath != null)
             {
@@ -96,7 +98,7 @@ namespace TicketPrint
                 else
                 {
                     var comp = System.Environment.MachineName;
-                    PrintServer myPrintServer = new PrintServer(@"\\DESKTOP-0F07K48" /*+ comp*/);
+                    PrintServer myPrintServer = new PrintServer(@"\\"+comp);
                     PrintQueueCollection myPrintQueues = myPrintServer.GetPrintQueues();
                     try
                     {
@@ -115,9 +117,9 @@ namespace TicketPrint
 
                         }
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-                        //throw;
+                        MessageBox.Show(ex.Message, "Print");
                     }
                 }
             }
